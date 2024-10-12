@@ -36,7 +36,14 @@ int FatorDeBalanceamento(No* no) {
 // Função para atualizar a altura de um nó
 void AtualizarAltura(No* no) {
     if (no != NULL) {
-        no->altura = 1 + (Altura(no->esquerda) > Altura(no->direita) ? Altura(no->esquerda) : Altura(no->direita));
+        int alturaEsquerda = Altura(no->esquerda);
+        int alturaDireita = Altura(no->direita);
+
+        if (alturaEsquerda > alturaDireita) {
+            no->altura = 1 + alturaEsquerda;
+        } else {
+            no->altura = 1 + alturaDireita;
+        }
     }
 }
 
@@ -238,42 +245,42 @@ int main() {
         op = menu();
         switch (op) {
         case 1:
-            printf("Digite um valor para inserir na árvore: ");
+            printf("Digite um valor para inserir na arvore: ");
             scanf("%d", &valor);
             raiz = Inserir(raiz, valor);
-            printf("Valor %d inserido na árvore!\n", valor);
+            printf("Valor %d inserido na arvore!\n", valor);
             break;
         case 2:
-            printf("Digite um valor para buscar na árvore: ");
+            printf("Digite um valor para buscar na arvore: ");
             scanf("%d", &valor);
             No* encontrado = Buscar(raiz, valor);
             if (encontrado != NULL) {
-                printf("Valor %d encontrado na árvore!\n", valor);
+                printf("Valor %d encontrado na arvore!\n", valor);
             } else {
-                printf("Valor %d não encontrado na árvore!\n", valor);
+                printf("Valor %d não encontrado na arvore!\n", valor);
             }
             break;
         case 3:
-            printf("Árvore em Pré-Ordem: ");
+            printf("Arvore em PreOrdem: ");
             PercursoPreOrdem(raiz);
             printf("\n");
             break;
         case 4:
-            printf("Árvore em Em-Ordem: ");
+            printf("Arvore em Em-Ordem: ");
             PercursoEmOrdem(raiz);
             printf("\n");
             break;
         case 5:
-            printf("Árvore em Pós-Ordem: ");
+            printf("Arvore em Pos-Ordem: ");
             PercursoPosOrdem(raiz);
             printf("\n");
             break;
         case 6:
-            printf("Estrutura da árvore:\n");
+            printf("Estrutura da arvore:\n");
             MostrarArvore(raiz, 0);
             break;
         case 7:
-            printf("Digite um valor para apagar da árvore: ");
+            printf("Digite um valor para apagar da arvore: ");
             scanf("%d", &valor);
             raiz = Apagar(raiz, valor);
             printf("Valor %d apagado da árvore!\n", valor);
